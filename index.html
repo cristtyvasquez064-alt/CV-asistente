@@ -1,102 +1,699 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curriculum Vitae | Asistente Virtual y Administrativo</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <title>Cristty Vásquez | Asistente Virtual & Administrativo</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- html2pdf.js para generar PDF de forma automática -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-    <header>
-        <div class="container">
-            <h1>Cristty Laura Vasquez Gil</h1>
-            <h2>Asistente Virtual & Asistente Administrativo</h2>
-            <div class="contact-info">
-                <p>📧 Email: cristty064@gmail.com</p>
-                <p>📱 Teléfono / WhatsApp: +56 414 4681756</p>
-                <p>📍 Ubicación: Aragua, Venezuela</p>
-                <p>💼 LinkedIn: https://www.linkedin.com/in/cristty-vasquez-66297135b?</p>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            900: '#0c4a6e',
+                        },
+                        dark: {
+                            bg: '#0f172a',
+                            card: '#1e293b',
+                            border: '#334155',
+                            accent: '#38bdf8'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0ea5e9;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        /* Estilos para las imágenes personalizadas */
+        .brand-logo-img {
+            height: 36px;
+            width: 36px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            box-shadow: 0 2px 8px rgba(14, 165, 233, 0.2);
+        }
+        .hero-avatar-img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 9999px;
+            border: 3px solid #38bdf8;
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-200 font-sans antialiased selection:bg-sky-500 selection:text-white relative">
+
+    <!-- Header / Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-card transition-all duration-300" id="navbar">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <!-- Brand Logo -->
+                <a href="#inicio" class="flex items-center gap-3 group">
+                    <img src="tu-logo.png" alt="Logo Cristty Vásquez" class="brand-logo-img group-hover:scale-105 transition-transform" onerror="this.src='https://placehold.co/100x100/0ea5e9/ffffff?text=CV'">
+                    <span class="font-bold text-lg text-white tracking-wide group-hover:text-sky-400 transition-colors">
+                        Cristty<span class="text-sky-400">Vásquez</span>
+                    </span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                    <a href="#inicio" class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">Inicio</a>
+                    <a href="#perfil" class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">Perfil</a>
+                    <a href="#metricas" class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">Métricas</a>
+                    <a href="#experiencia" class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">Experiencia</a>
+                    <a href="#habilidades" class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">Habilidades</a>
+                    
+                    <!-- Botón Descargar PDF en Nav -->
+                    <button onclick="descargarPDF()" class="no-pdf px-3 py-2 rounded-lg text-sm font-semibold text-sky-400 border border-sky-500/40 hover:bg-sky-500/10 transition-all flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-file-arrow-down"></i> PDF
+                    </button>
+
+                    <a href="#contacto" class="ml-2 px-4 py-2 rounded-lg text-sm font-semibold text-white gradient-bg hover:opacity-90 transition-opacity shadow-md shadow-sky-500/20">
+                        Contacto
+                    </a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" type="button" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none" aria-label="Abrir Menú">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
             </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div class="hidden md:hidden bg-slate-900/95 border-b border-slate-800 px-4 pt-2 pb-6 space-y-2" id="mobile-menu">
+            <a href="#inicio" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Inicio</a>
+            <a href="#perfil" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Perfil</a>
+            <a href="#metricas" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Métricas</a>
+            <a href="#experiencia" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Experiencia</a>
+            <a href="#habilidades" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Habilidades</a>
+            
+            <button onclick="descargarPDF()" class="mobile-link no-pdf w-full text-center px-4 py-2 rounded-lg text-base font-semibold text-sky-400 border border-sky-500/40 bg-slate-800/80">
+                <i class="fa-solid fa-file-arrow-down mr-2"></i>Descargar CV (PDF)
+            </button>
+
+            <a href="#contacto" class="mobile-link block w-full text-center mt-3 px-4 py-2 rounded-lg text-base font-semibold text-white gradient-bg">Contacto</a>
         </div>
     </header>
 
-    <main class="container">
-        
-        <section class="profile">
-            <h3>Perfil Profesional</h3>
-            <p>
-                Asistente Administrativo y Virtual con más de 6 años de experiencia combinada en gestión documental, control de agendas, atención al cliente y organización de eventos. Destacada capacidad para la optimización de procesos operativos, gestión eficiente del tiempo y comunicación fluida en entornos presenciales y remotos. Orientada al detalle, proactiva y enfocada en facilitar la operativa diaria de equipos y directivos.
-            </p>
-        </section>
+    <main class="pt-20">
+        <!-- Hero / Section Inicio -->
+        <section id="inicio" class="min-h-[90vh] flex items-center justify-center relative overflow-hidden py-16">
+            <!-- Background Glows -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-10 right-10 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-        <section class="experience">
-            <h3>Experiencia Laboral</h3>
-
-            <div class="job">
-                <h4>Asistente Administrativo</h4>
-                <p class="company">Bus Guárico | 1 año</p>
-                <ul>
-                    <li>Organización y clasificación de documentación interna y comprobantes administrativos.</li>
-                    <li>Control y gestión de horarios del personal y cronogramas operativos.</li>
-                    <li>Programación, agendamiento y confirmación de citas y visitas institucionales.</li>
-                </ul>
-            </div>
-
-            <div class="job">
-                <h4>Asistente Administrativo</h4>
-                <p class="company">Fundacomunal | 1 año</p>
-                <ul>
-                    <li>Manejo y actualización continua de la agenda institucional y reuniones clave.</li>
-                    <li>Administración, archivo y resguardo de expedientes y documentos de la organización.</li>
-                    <li>Apoyo en la logística y recepción de solicitudes operativas diarias.</li>
-                </ul>
-            </div>
-
-            <div class="job">
-                <h4>Atención al Cliente y Coordinación de Eventos</h4>
-                <p class="company">Restaurante Tropipizza | 4 años</p>
-                <ul>
-                    <li>Gestión directa de atención al público y ventas en el establecimiento.</li>
-                    <li>Planificación, logística y organización integral de eventos y celebraciones.</li>
-                    <li>Resolución de requerimientos de clientes garantizando una alta tasa de satisfacción.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="skills">
-            <h3>Habilidades Clave</h3>
-            <div class="skills-grid">
-                <div>
-                    <h4>Administrativas y Virtuales</h4>
-                    <ul>
-                        <li>Gestión de agendas y calendarios.</li>
-                        <li>Organización documental y archivo digital/físico.</li>
-                        <li>Atención al cliente y comunicación efectiva.</li>
-                        <li>Planificación y gestión de logística de eventos.</li>
-                    </ul>
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <!-- Status Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-800/80 border border-slate-700/60 mb-8 backdrop-blur-md">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="text-xs sm:text-sm font-medium text-slate-300">Disponible para Trabajo Remoto y Presencial</span>
                 </div>
-                <div>
-                    <h4>Herramientas Informáticas (Sugeridas)</h4>
-                    <ul>
-                        <li>Google Workspace (Drive, Docs, Sheets, Calendar).</li>
-                        <li>Microsoft Office (Word, Excel).</li>
-                        <li>Gestión de correo electrónico .</li>
-                    </ul>
+
+                <!-- Main Title -->
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight mb-6">
+                    Cristty Vásquez
+                </h1>
+
+                <!-- Subtitle / Role -->
+                <p class="text-xl sm:text-2xl lg:text-3xl font-semibold gradient-text mb-6">
+                    Asistente Virtual & Asistente Administrativo
+                </p>
+
+                <!-- Brief intro -->
+                <p class="max-w-2xl mx-auto text-base sm:text-lg text-slate-400 mb-10 leading-relaxed">
+                    Especialista en optimizar procesos organizacionales, gestión integral de agendas, control documental y excelente trato con el cliente para empresas e instituciones.
+                </p>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <button onclick="descargarPDF()" class="no-pdf w-full sm:w-auto px-8 py-4 rounded-xl text-white font-semibold gradient-bg hover:shadow-lg hover:shadow-sky-500/25 hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer">
+                        <i class="fa-solid fa-file-arrow-down text-lg"></i> Descargar CV en PDF
+                    </button>
+                    <a href="#contacto" class="w-full sm:w-auto px-8 py-4 rounded-xl text-slate-200 font-semibold bg-slate-900 border border-slate-700 hover:bg-slate-800 hover:border-slate-600 transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i> Contactar Ahora
+                    </a>
+                </div>
+
+                <!-- Quick Tech Stack Badges -->
+                <div class="mt-16 pt-8 border-t border-slate-800/80 flex flex-wrap items-center justify-center gap-3 text-slate-400 text-sm">
+                    <span class="text-xs uppercase tracking-wider font-semibold text-slate-500 mr-2">Herramientas clave:</span>
+                    <span class="px-3 py-1 rounded-md bg-slate-900 border border-slate-800">Google Workspace</span>
+                    <span class="px-3 py-1 rounded-md bg-slate-900 border border-slate-800">Microsoft Office</span>
+                    <span class="px-3 py-1 rounded-md bg-slate-900 border border-slate-800">Gestión de Calendario</span>
+                    <span class="px-3 py-1 rounded-md bg-slate-900 border border-slate-800">Logística de Eventos</span>
                 </div>
             </div>
         </section>
 
-        <section class="education">
-            <h3>Educación</h3>
-            <p><strong>Ingenieria Agronomica</strong> — Universidad Nacional Experimental de los Lanos Centrales Romulo Gallegos UNERG, 2018-2025</p>
+        <!-- Profile Section -->
+        <section id="perfil" class="py-20 bg-slate-900/50 relative border-t border-slate-800/50">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-xs sm:text-sm font-bold uppercase tracking-widest text-sky-400 mb-2">Resumen Profesional</h2>
+                    <h3 class="text-3xl sm:text-4xl font-bold text-white">Sobre Mí</h3>
+                </div>
+
+                <div class="grid md:grid-cols-12 gap-8 items-center">
+                    <!-- Avatar / Initials Card -->
+                    <div class="md:col-span-4 flex justify-center">
+                        <div class="relative group">
+                            <div class="absolute -inset-1 rounded-2xl gradient-bg blur opacity-40 group-hover:opacity-75 transition duration-500"></div>
+                            <div class="relative w-56 h-56 sm:w-64 sm:h-64 rounded-2xl bg-slate-900 border border-slate-700 flex flex-col items-center justify-center p-6 text-center">
+                                <img src="tu-foto.jpg" alt="Cristty Vásquez" class="hero-avatar-img mb-3 group-hover:scale-105 transition-transform" onerror="this.src='https://placehold.co/200x200/0ea5e9/ffffff?text=Cristty'">
+                                <h4 class="text-lg font-bold text-white">Cristty Vásquez</h4>
+                                <p class="text-xs text-slate-400">Asistencia Virtual & Admin</p>
+                                <span class="mt-3 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                                    +6 Años de Experiencia
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Bio -->
+                    <div class="md:col-span-8 space-y-4">
+                        <div class="glass-card p-6 sm:p-8 rounded-2xl border border-slate-800">
+                            <h4 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                                <i class="fa-solid fa-user-gear text-sky-400"></i> Perfil Profesional
+                            </h4>
+                            <p class="text-slate-300 leading-relaxed text-base mb-4">
+                                Asistente Administrativo y Virtual con más de 6 años de experiencia combinada en gestión documental, control estricto de agendas, atención al cliente de alto nivel y organización eficiente de eventos corporativos y comerciales.
+                            </p>
+                            <p class="text-slate-300 leading-relaxed text-base">
+                                Destaco por mi capacidad para optimizar procesos operativos internos, gestionar la agenda ejecutiva sin margen de error y mantener una comunicación fluida en entornos de trabajo tanto presenciales como remotos. Orientada al detalle, proactiva y comprometida con el éxito operativo del equipo.
+                            </p>
+                        </div>
+
+                        <!-- Core Strengths -->
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-center">
+                                <i class="fa-solid fa-calendar-check text-sky-400 text-xl mb-2"></i>
+                                <p class="text-xs font-semibold text-slate-200">Gestión de Agendas</p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-center">
+                                <i class="fa-solid fa-folder-tree text-sky-400 text-xl mb-2"></i>
+                                <p class="text-xs font-semibold text-slate-200">Organización Documental</p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-center col-span-2 sm:col-span-1">
+                                <i class="fa-solid fa-headset text-sky-400 text-xl mb-2"></i>
+                                <p class="text-xs font-semibold text-slate-200">Atención al Cliente</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
+        <!-- Metrics & Impact Section (Inspired by interactive metrics showcase) -->
+        <section id="metricas" class="py-20 relative">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-14">
+                    <h2 class="text-xs sm:text-sm font-bold uppercase tracking-widest text-sky-400 mb-2">Resultados Cuantitativos</h2>
+                    <h3 class="text-3xl sm:text-4xl font-bold text-white">Métricas de Impacto</h3>
+                    <p class="text-slate-400 mt-2 max-w-xl mx-auto text-sm">Trayectoria reflejada en consistencia, organización y resultados medibles.</p>
+                </div>
+
+                <!-- Stats Cards Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Stat 1 -->
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-sky-500/50 transition-all duration-300 text-center group">
+                        <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-business-time text-2xl"></i>
+                        </div>
+                        <div class="text-4xl font-extrabold text-white mb-2 counter" data-target="6">+0</div>
+                        <p class="text-sm font-semibold text-sky-400 mb-1">Años de Trayectoria</p>
+                        <p class="text-xs text-slate-400">Experiencia combinada en sector público y privado</p>
+                    </div>
+
+                    <!-- Stat 2 -->
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-sky-500/50 transition-all duration-300 text-center group">
+                        <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-building text-2xl"></i>
+                        </div>
+                        <div class="text-4xl font-extrabold text-white mb-2 counter" data-target="3">0</div>
+                        <p class="text-sm font-semibold text-indigo-400 mb-1">Empresas / Instituciones</p>
+                        <p class="text-xs text-slate-400">Bus Guárico, Fundacomunal y Tropipizza</p>
+                    </div>
+
+                    <!-- Stat 3 -->
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-sky-500/50 transition-all duration-300 text-center group">
+                        <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-square-check text-2xl"></i>
+                        </div>
+                        <div class="text-4xl font-extrabold text-white mb-2"><span class="counter" data-target="100">0</span>%</div>
+                        <p class="text-sm font-semibold text-emerald-400 mb-1">Cumplimiento de Agenda</p>
+                        <p class="text-xs text-slate-400">Precisión en agendamiento y visitas</p>
+                    </div>
+
+                    <!-- Stat 4 -->
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-sky-500/50 transition-all duration-300 text-center group">
+                        <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-star text-2xl"></i>
+                        </div>
+                        <div class="text-4xl font-extrabold text-white mb-2"><span class="counter" data-target="4">0</span> Años</div>
+                        <p class="text-sm font-semibold text-purple-400 mb-1">Atención al Público</p>
+                        <p class="text-xs text-slate-400">Gestión continua en Tropipizza</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Timeline Section -->
+        <section id="experiencia" class="py-20 bg-slate-900/50 relative border-t border-slate-800/50">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-xs sm:text-sm font-bold uppercase tracking-widest text-sky-400 mb-2">Historial Laboral</h2>
+                    <h3 class="text-3xl sm:text-4xl font-bold text-white">Experiencia Profesional</h3>
+                </div>
+
+                <div class="relative border-l-2 border-slate-800 ml-4 sm:ml-32 space-y-12">
+                    
+                    <!-- Job Item 1 -->
+                    <div class="relative pl-6 sm:pl-8 group">
+                        <!-- Timeline Node Dot -->
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-950 border-2 border-sky-400 group-hover:scale-125 group-hover:bg-sky-400 transition-all"></div>
+                        
+                        <!-- Timeline Date tag (Desktop left side positioning simulated) -->
+                        <div class="sm:absolute sm:-left-36 sm:top-1 text-sm font-bold text-sky-400 mb-2 sm:mb-0">
+                            1 Año
+                        </div>
+
+                        <!-- Card Content -->
+                        <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-slate-700 transition-colors">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                                <div>
+                                    <h4 class="text-xl font-bold text-white">Asistente Administrativo</h4>
+                                    <p class="text-sky-400 font-medium text-sm flex items-center gap-2">
+                                        <i class="fa-solid fa-building"></i> Bus Guárico
+                                    </p>
+                                </div>
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 w-fit">
+                                    Administración Pública
+                                </span>
+                            </div>
+
+                            <ul class="space-y-2 text-slate-300 text-sm">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-circle-check text-sky-400 mt-1 text-xs"></i>
+                                    <span>Organización, estructuración y resguardo de documentación interna y comprobantes administrativos.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-circle-check text-sky-400 mt-1 text-xs"></i>
+                                    <span>Control, seguimiento y llevado riguroso de horarios del personal operativo y administrativo.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-circle-check text-sky-400 mt-1 text-xs"></i>
+                                    <span>Programación, agendamiento y confirmación de citas corporativas y visitas institucionales.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Job Item 2 -->
+                    <div class="relative pl-6 sm:pl-8 group">
+                        <!-- Timeline Node Dot -->
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-950 border-2 border-sky-400 group-hover:scale-125 group-hover:bg-sky-400 transition-all"></div>
+                        
+                        <!-- Timeline Date tag -->
+                        <div class="sm:absolute sm:-left-36 sm:top-1 text-sm font-bold text-sky-400 mb-2 sm:mb-0">
+                            1 Año
+                        </div>
+
+                        <!-- Card Content -->
+                        <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-slate-700 transition-colors">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                                <div>
+                                    <h4 class="text-xl font-bold text-white">Asistente Administrativo</h4>
+                                    <p class="text-sky-400 font-medium text-sm flex items-center gap-2">
+                                        <i class="fa-solid fa-landmark"></i> Fundacomunal
+                                    </p>
+                                </div>
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 w-fit">
+                                    Gestión Institucional
+                                </span>
+                            </div>
+
+                            <ul class="space-y-2 text-slate-300 text-sm">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-circle-check text-sky-400 mt-1 text-xs"></i>
+                                    <span>Manejo activo y actualización constante de agendas directivas y reuniones clave de la organización.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-circle-check text-sky-400 mt-1 text-xs"></i>
+                                    <span>Clasificación, archivo y conservación de expedientes institucionales garantizando un rápido acceso a la información.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-circle-check text-sky-400 mt-1 text-xs"></i>
+                                    <span>Atención telefónica y presencial con respuesta oportuna a solicitudes administrativas.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Job Item 3 -->
+                    <div class="relative pl-6 sm:pl-8 group">
+                        <!-- Timeline Node Dot -->
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-950 border-2 border-sky-400 group-hover:scale-125 group-hover:bg-sky-400 transition-all"></div>
+                        
+                        <!-- Timeline Date tag -->
+                        <div class="sm:absolute sm:-left-36 sm:top-1 text-sm font-bold text-sky-400 mb-2 sm:mb-0">
+                            4 Años
+                        </div>
+
+                        <!-- Card Content -->
+                        <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-slate-700 transition-colors">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                                <div>
+                                    <h4 class="text-xl font-bold text-white">Atención al Cliente & Coordinación de Eventos</h4>
+                                    <p class="text-sky-400 font-medium text-sm flex items-center gap-2">
+                                        <i class="fa-solid fa-utensils"></i> Restaurante Tropipizza
+                                    </p>
+                                </div>
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 w-fit">
+                                    Atención al Cliente
+                                </span>
+                            </div>
+
+                            <ul class="space-y-2 text-slate-300 text-sm">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-circle-check text-sky-400 mt-1 text-xs"></i>
+                                    <span>Atención directa y personalizada al cliente con alto estándar de satisfacción y fidelización.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-circle-check text-sky-400 mt-1 text-xs"></i>
+                                    <span>Gestión de ventas presenciales, manejo de caja e inventario básico de servicios.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-circle-check text-sky-400 mt-1 text-xs"></i>
+                                    <span>Planificación, logística y coordinación integral de eventos especiales y reservaciones.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section with Bars & Interactive Tabs -->
+        <section id="habilidades" class="py-20 relative">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-14">
+                    <h2 class="text-xs sm:text-sm font-bold uppercase tracking-widest text-sky-400 mb-2">Competencias</h2>
+                    <h3 class="text-3xl sm:text-4xl font-bold text-white">Habilidades & Destrezas</h3>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Soft & Admin Skills -->
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl border border-slate-800">
+                        <h4 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                            <i class="fa-solid fa-list-check text-sky-400"></i> Habilidades Administrativas
+                        </h4>
+
+                        <div class="space-y-5">
+                            <div>
+                                <div class="flex justify-between text-sm font-medium mb-1">
+                                    <span class="text-slate-200">Gestión de Agendas y Calendario</span>
+                                    <span class="text-sky-400 font-bold">95%</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-sky-400 rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-sm font-medium mb-1">
+                                    <span class="text-slate-200">Organización y Archivo Documental</span>
+                                    <span class="text-sky-400 font-bold">90%</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-sky-400 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-sm font-medium mb-1">
+                                    <span class="text-slate-200">Atención al Cliente y Comunicación</span>
+                                    <span class="text-sky-400 font-bold">98%</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-sky-400 rounded-full" style="width: 98%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-sm font-medium mb-1">
+                                    <span class="text-slate-200">Logística de Eventos y Reuniones</span>
+                                    <span class="text-sky-400 font-bold">88%</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-sky-400 rounded-full" style="width: 88%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Digital & Virtual Tools -->
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl border border-slate-800">
+                        <h4 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                            <i class="fa-solid fa-laptop-code text-sky-400"></i> Herramientas Digitales
+                        </h4>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-sky-500/40 transition-colors">
+                                <div class="text-sky-400 text-2xl mb-2"><i class="fa-brands fa-google"></i></div>
+                                <h5 class="text-white font-semibold text-sm">Google Workspace</h5>
+                                <p class="text-xs text-slate-400 mt-1">Drive, Docs, Sheets, Calendar, Gmail</p>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-sky-500/40 transition-colors">
+                                <div class="text-sky-400 text-2xl mb-2"><i class="fa-solid fa-file-excel"></i></div>
+                                <h5 class="text-white font-semibold text-sm">Microsoft Office</h5>
+                                <p class="text-xs text-slate-400 mt-1">Word, Excel, PowerPoint</p>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-sky-500/40 transition-colors">
+                                <div class="text-sky-400 text-2xl mb-2"><i class="fa-solid fa-comments"></i></div>
+                                <h5 class="text-white font-semibold text-sm">Comunicación Virtual</h5>
+                                <p class="text-xs text-slate-400 mt-1">WhatsApp Business, Zoom, Meet</p>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-sky-500/40 transition-colors">
+                                <div class="text-sky-400 text-2xl mb-2"><i class="fa-solid fa-clock"></i></div>
+                                <h5 class="text-white font-semibold text-sm">Gestión del Tiempo</h5>
+                                <p class="text-xs text-slate-400 mt-1">Trello, Notion, Cronogramas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contacto" class="py-20 bg-slate-900/50 relative border-t border-slate-800/50">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-xs sm:text-sm font-bold uppercase tracking-widest text-sky-400 mb-2">Conectemos</h2>
+                    <h3 class="text-3xl sm:text-4xl font-bold text-white">Información de Contacto</h3>
+                    <p class="text-slate-400 mt-2 text-sm">¿Buscas optimizar la administración de tu negocio o apoyo de asistente virtual? ¡Escríbeme!</p>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-6">
+                    <!-- Email Card -->
+                    <a href="mailto:cristtyvasquez064@gmail.com" class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-sky-500/60 transition-all flex items-center gap-4 group">
+                        <div class="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-envelope text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Email</p>
+                            <p class="text-sm font-bold text-white group-hover:text-sky-400 transition-colors">cristtyvasquez064@gmail.com</p>
+                        </div>
+                    </a>
+
+                    <!-- WhatsApp / Phone Card -->
+                    <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-emerald-500/60 transition-all flex items-center gap-4 group">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">WhatsApp</p>
+                            <p class="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">+58 (Enviar Mensaje Directo)</p>
+                        </div>
+                    </a>
+
+                    <!-- GitHub Card -->
+                    <a href="https://github.com/cristtyvasquez064-alt" target="_blank" rel="noopener noreferrer" class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-purple-500/60 transition-all flex items-center gap-4 group">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform">
+                            <i class="fa-brands fa-github text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">GitHub Portfolio</p>
+                            <p class="text-sm font-bold text-white group-hover:text-purple-400 transition-colors">cristtyvasquez064-alt</p>
+                        </div>
+                    </a>
+
+                    <!-- Location Card -->
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+                            <i class="fa-solid fa-location-dot text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Modalidad</p>
+                            <p class="text-sm font-bold text-white">Remoto / Presencial</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <p>© 2026 [Tu Nombre y Apellido] — Currículum Vitae</p>
+    <!-- Footer -->
+    <footer class="py-8 bg-slate-950 border-t border-slate-800/80 text-center text-xs text-slate-500">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© 2026 Cristty Vásquez — Asistente Virtual y Administrativo.</p>
+            <p>Diseñado para GitHub Pages</p>
+        </div>
     </footer>
 
+    <!-- Interactive Counter Script -->
+    <script>
+        // Mobile menu toggle logic
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Animated Metric Counters logic
+        const counters = document.querySelectorAll('.counter');
+        let animated = false;
+
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                let count = 0;
+                const speed = target / 30; // speed step
+
+                const updateCount = () => {
+                    count += speed;
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count);
+                        setTimeout(updateCount, 40);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+
+                updateCount();
+            });
+        };
+
+        // Scroll observer for trigger metrics animation
+        const observerOptions = {
+            threshold: 0.4
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !animated) {
+                    animateCounters();
+                    animated = true;
+                }
+            });
+        }, observerOptions);
+
+        const metricsSection = document.getElementById('metricas');
+        if (metricsSection) {
+            observer.observe(metricsSection);
+        }
+
+        // Función para descargar el CV completo en formato PDF
+        function descargarPDF() {
+            const navbar = document.getElementById('navbar');
+            const noPdfElements = document.querySelectorAll('.no-pdf');
+            
+            // Ocultar temporalmente elementos de navegación
+            if (navbar) navbar.style.display = 'none';
+            noPdfElements.forEach(el => el.style.display = 'none');
+
+            const elemento = document.body;
+            const opciones = {
+                margin:       [10, 10, 10, 10],
+                filename:     'CV_Cristty_Vasquez.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#0f172a' },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            // Generar PDF y restaurar la interfaz
+            html2pdf().set(opciones).from(elemento).save().then(() => {
+                if (navbar) navbar.style.display = 'block';
+                noPdfElements.forEach(el => el.style.display = '');
+            }).catch(err => {
+                console.error("Error al generar PDF:", err);
+                if (navbar) navbar.style.display = 'block';
+                noPdfElements.forEach(el => el.style.display = '');
+            });
+        }
+    </script>
 </body>
 </html>
