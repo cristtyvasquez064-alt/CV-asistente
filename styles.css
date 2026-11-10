@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f6f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: #1e293b;
+    color: #ffffff;
+    padding: 40px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 5px;
+}
+
+header h2 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #94a3b8;
+    margin-bottom: 15px;
+}
+
+.contact-info p {
+    font-size: 0.9rem;
+    display: inline-block;
+    margin: 0 10px;
+    color: #cbd5e1;
+}
+
+main {
+    background: #ffffff;
+    margin-top: -20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    padding: 30px;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+h3 {
+    color: #0f172a;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.job {
+    margin-bottom: 20px;
+}
+
+.job h4 {
+    color: #2563eb;
+    font-size: 1.1rem;
+}
+
+.company {
+    font-weight: 600;
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+.skills-grid {
+    display: flex;
+    gap: 20px;
+}
+
+.skills-grid div {
+    flex: 1;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+@media (max-width: 600px) {
+    .contact-info p {
+        display: block;
+        margin: 5px 0;
+    }
+    
+    .skills-grid {
+        flex-direction: column;
+    }
+}
