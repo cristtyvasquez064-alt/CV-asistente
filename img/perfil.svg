@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#818cf8"/>
+    </linearGradient>
+    <linearGradient id="skinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fed7aa"/>
+      <stop offset="100%" stop-color="#fba063"/>
+    </linearGradient>
+    <clipPath id="circleClip">
+      <circle cx="100" cy="100" r="92"/>
+    </clipPath>
+  </defs>
+
+  <!-- Borde decorativo exterior -->
+  <circle cx="100" cy="100" r="96" fill="none" stroke="url(#ringGrad)" stroke-width="4"/>
+
+  <!-- Fondo circular principal -->
+  <circle cx="100" cy="100" r="92" fill="url(#bgGrad)"/>
+
+  <!-- Contenido recortado dentro del círculo -->
+  <g clip-path="url(#circleClip)">
+    <!-- Brillo de fondo sutil -->
+    <circle cx="100" cy="65" r="45" fill="#38bdf8" opacity="0.2"/>
+
+    <!-- Traje / Ropa profesional -->
+    <path d="M40 200 C40 145, 60 135, 100 135 C140 135, 160 145, 160 200 Z" fill="#1e293b"/>
+    <!-- Blusa / Camisa -->
+    <path d="M85 135 L100 162 L115 135 Z" fill="#f8fafc"/>
+    <path d="M72 138 L100 178 L86 200 L55 200 Z" fill="#0284c7"/>
+    <path d="M128 138 L100 178 L114 200 L145 200 Z" fill="#0369a1"/>
+
+    <!-- Cuello -->
+    <rect x="88" y="112" width="24" height="28" rx="6" fill="url(#skinGrad)"/>
+    <path d="M88 126 C95 132, 105 132, 112 126 Z" fill="#ea580c" opacity="0.25"/>
+
+    <!-- Rostro -->
+    <ellipse cx="100" cy="88" rx="28" ry="34" fill="url(#skinGrad)"/>
+
+    <!-- Cabello - Base -->
+    <path d="M66 85 C64 55, 80 42, 100 42 C120 42, 136 55, 134 85 C132 105, 135 125, 138 135 C132 136, 126 128, 126 115 C115 122, 85 122, 74 115 C74 128, 68 136, 62 135 C65 125, 68 105, 66 85 Z" fill="#334155"/>
+
+    <!-- Cabello - Frente / Flequillo profesional -->
+    <path d="M68 76 C72 54, 90 48, 100 48 C116 48, 132 56, 132 76 C124 64, 110 60, 100 62 C88 64, 76 68, 68 76 Z" fill="#1e293b"/>
+
+    <!-- Lentes estilizados de asistente -->
+    <rect x="76" y="80" width="20" height="15" rx="4" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+    <rect x="104" y="80" width="20" height="15" rx="4" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+    <line x1="96" y1="87" x2="104" y2="87" stroke="#38bdf8" stroke-width="2.5"/>
+
+    <!-- Sonrisa amigable -->
+    <path d="M92 104 Q100 110 108 104" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round"/>
+  </g>
+</svg>
