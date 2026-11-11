@@ -92,6 +92,131 @@
             box-shadow: 0 0 22px rgba(14, 165, 233, 0.35);
             display: block;
         }
+
+        /* Estilos aislados para renderizar el PDF de CV.html */
+        #cv-pdf-render-container {
+            width: 800px;
+            background-color: #f4f6f9;
+            color: #333333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-align: left;
+        }
+        #cv-pdf-render-container * {
+            box-sizing: border-box;
+        }
+        #cv-pdf-render-container .cv-page {
+            width: 800px;
+            background-color: #f4f6f9;
+            margin: 0 auto;
+        }
+        #cv-pdf-render-container .cv-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        #cv-pdf-render-container .cv-header {
+            background-color: #1e293b;
+            color: #ffffff;
+            padding: 40px 20px 30px 20px;
+            text-align: center;
+        }
+        #cv-pdf-render-container .cv-avatar-img {
+            width: 110px;
+            height: 110px;
+            object-fit: cover;
+            object-position: center 20%;
+            border-radius: 50%;
+            border: 3px solid #38bdf8;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.25);
+            margin-bottom: 12px;
+        }
+        #cv-pdf-render-container h1 {
+            font-size: 2.1rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+        #cv-pdf-render-container h2 {
+            font-size: 1.15rem;
+            font-weight: 400;
+            color: #94a3b8;
+            margin-bottom: 14px;
+        }
+        #cv-pdf-render-container .cv-contact-info p {
+            font-size: 0.88rem;
+            display: inline-block;
+            margin: 3px 8px;
+            color: #cbd5e1;
+        }
+        #cv-pdf-render-container .cv-main-card {
+            background: #ffffff;
+            margin-top: -20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 30px;
+        }
+        #cv-pdf-render-container .cv-section {
+            margin-bottom: 24px;
+        }
+        #cv-pdf-render-container h3 {
+            color: #0f172a;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 8px;
+            margin-bottom: 14px;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        #cv-pdf-render-container .cv-job {
+            margin-bottom: 18px;
+        }
+        #cv-pdf-render-container .cv-job h4 {
+            color: #0284c7;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        #cv-pdf-render-container .cv-company {
+            font-weight: 600;
+            color: #64748b;
+            font-size: 0.88rem;
+            margin-bottom: 6px;
+        }
+        #cv-pdf-render-container ul {
+            padding-left: 22px;
+            margin: 6px 0;
+            list-style-type: disc !important;
+        }
+        #cv-pdf-render-container li {
+            margin-bottom: 4px;
+            color: #334155;
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+        #cv-pdf-render-container .cv-skills-grid {
+            display: flex;
+            gap: 20px;
+        }
+        #cv-pdf-render-container .cv-skills-grid div {
+            flex: 1;
+        }
+        #cv-pdf-render-container .cv-skills-grid h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 6px;
+        }
+        #cv-pdf-render-container .cv-footer {
+            text-align: center;
+            padding: 16px;
+            font-size: 0.82rem;
+            color: #64748b;
+        }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-200 font-sans antialiased selection:bg-sky-500 selection:text-white relative">
@@ -125,8 +250,8 @@
                     <a href="#educacion" class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">Educación</a>
                     
                     <!-- Botón Descargar PDF en Nav -->
-                    <button onclick="descargarPDF()" class="no-pdf px-3 py-2 rounded-lg text-sm font-semibold text-sky-400 border border-sky-500/40 hover:bg-sky-500/10 transition-all flex items-center gap-1.5 cursor-pointer">
-                        <i class="fa-solid fa-file-arrow-down"></i> PDF
+                    <button onclick="descargarPDF()" class="no-pdf btn-descargar-pdf px-3 py-2 rounded-lg text-sm font-semibold text-sky-400 border border-sky-500/40 hover:bg-sky-500/10 transition-all flex items-center gap-1.5 cursor-pointer" title="Descargar Currículum Vitae en PDF">
+                        <i class="fa-solid fa-file-arrow-down"></i> <span class="btn-pdf-label">PDF</span>
                     </button>
 
                     <a href="#contacto" class="ml-2 px-4 py-2 rounded-lg text-sm font-semibold text-white gradient-bg hover:opacity-90 transition-opacity shadow-md shadow-sky-500/20">
@@ -152,8 +277,8 @@
             <a href="#habilidades" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Habilidades</a>
             <a href="#educacion" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Educación</a>
             
-            <button onclick="descargarPDF()" class="mobile-link no-pdf w-full text-center px-4 py-2 rounded-lg text-base font-semibold text-sky-400 border border-sky-500/40 bg-slate-800/80">
-                <i class="fa-solid fa-file-arrow-down mr-2"></i>Descargar CV (PDF)
+            <button onclick="descargarPDF()" class="mobile-link no-pdf btn-descargar-pdf w-full text-center px-4 py-2 rounded-lg text-base font-semibold text-sky-400 border border-sky-500/40 bg-slate-800/80 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-file-arrow-down mr-2"></i><span class="btn-pdf-label">Descargar CV (PDF)</span>
             </button>
 
             <a href="#contacto" class="mobile-link block w-full text-center mt-3 px-4 py-2 rounded-lg text-base font-semibold text-white gradient-bg">Contacto</a>
@@ -191,8 +316,8 @@
 
                 <!-- Action Buttons -->
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <button onclick="descargarPDF()" class="no-pdf w-full sm:w-auto px-8 py-4 rounded-xl text-white font-semibold gradient-bg hover:shadow-lg hover:shadow-sky-500/25 hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer">
-                        <i class="fa-solid fa-file-arrow-down text-lg"></i> Descargar CV en PDF
+                    <button onclick="descargarPDF()" class="no-pdf btn-descargar-pdf w-full sm:w-auto px-8 py-4 rounded-xl text-white font-semibold gradient-bg hover:shadow-lg hover:shadow-sky-500/25 hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer">
+                        <i class="fa-solid fa-file-arrow-down text-lg"></i> <span class="btn-pdf-label">Descargar CV en PDF</span>
                     </button>
                     <a href="#contacto" class="w-full sm:w-auto px-8 py-4 rounded-xl text-slate-200 font-semibold bg-slate-900 border border-slate-700 hover:bg-slate-800 hover:border-slate-600 transition-all flex items-center justify-center gap-2">
                         <i class="fa-solid fa-paper-plane"></i> Contactar Ahora
@@ -201,7 +326,8 @@
 
                 <!-- Quick Tech Stack Badges -->
                 <div class="mt-16 pt-8 border-t border-slate-800/80 flex flex-wrap items-center justify-center gap-3 text-slate-400 text-sm">
-                    <span class="text-xs uppercase tracking-wider font-semibold text-slate-500 mr-2">Herramientas clave:</span.>
+                    <span class="text-xs uppercase tracking-wider font-semibold text-slate-500 mr-2">Herramientas clave:</span>
+                    <span class="px-3 py-1 rounded-md bg-slate-900 border border-slate-800">Google Workspace</span>
                     <span class="px-3 py-1 rounded-md bg-slate-900 border border-slate-800">Microsoft Office</span>
                     <span class="px-3 py-1 rounded-md bg-slate-900 border border-slate-800">Gestión de Calendario</span>
                     <span class="px-3 py-1 rounded-md bg-slate-900 border border-slate-800">Logística de Eventos</span>
@@ -662,6 +788,105 @@
         </div>
     </footer>
 
+    <!-- ================================================================= -->
+    <!-- Contenedor del CV para generar PDF (replica exacta de CV.html)    -->
+    <!-- Este contenedor permanece oculto y solo se usa para la conversión -->
+    <!-- ================================================================= -->
+    <div id="cv-pdf-render-container" style="display: none;">
+        <div class="cv-page">
+            <header class="cv-header">
+                <div class="cv-container">
+                    <div style="margin-bottom: 15px;">
+                        <img src="img/imgperfil.png" alt="Foto de perfil Cristty Vásquez" class="cv-avatar-img" onerror="this.onerror=null; this.src='img/perfil.svg';">
+                    </div>
+                    <h1>Cristty Laura Vásquez Gil</h1>
+                    <h2>Asistente Virtual & Asistente Administrativo</h2>
+                    <div class="cv-contact-info">
+                        <p>📧 Email: cristty064@gmail.com</p>
+                        <p>📱 WhatsApp: +58 414 4681756</p>
+                        <p>📍 Ubicación: Aragua, Venezuela</p>
+                        <p>💼 LinkedIn: linkedin.com/in/cristty-vasquez-66297135b</p>
+                    </div>
+                </div>
+            </header>
+
+            <main class="cv-container cv-main-card">
+                <section class="cv-section">
+                    <h3>Perfil Profesional</h3>
+                    <p>
+                        Asistente Administrativo y Virtual con más de 6 años de experiencia combinada en gestión documental, control de agendas, atención al cliente y organización de eventos. Destacada capacidad para la optimización de procesos operativos, gestión eficiente del tiempo y comunicación fluida en entornos presenciales y remotos. Orientada al detalle, proactiva y enfocada en facilitar la operativa diaria de equipos y directivos.
+                    </p>
+                </section>
+
+                <section class="cv-section">
+                    <h3>Experiencia Laboral</h3>
+
+                    <div class="cv-job">
+                        <h4>Asistente Administrativo</h4>
+                        <p class="cv-company">Bus Guárico | 1 año</p>
+                        <ul>
+                            <li>Organización y clasificación de documentación interna y comprobantes administrativos.</li>
+                            <li>Control y gestión de horarios del personal y cronogramas operativos.</li>
+                            <li>Programación, agendamiento y confirmación de citas y visitas institucionales.</li>
+                        </ul>
+                    </div>
+
+                    <div class="cv-job">
+                        <h4>Asistente Administrativo</h4>
+                        <p class="cv-company">Fundacomunal | 1 año</p>
+                        <ul>
+                            <li>Manejo y actualización continua de la agenda institucional y reuniones clave.</li>
+                            <li>Administración, archivo y resguardo de expedientes y documentos de la organización.</li>
+                            <li>Apoyo en la logística y recepción de solicitudes operativas diarias.</li>
+                        </ul>
+                    </div>
+
+                    <div class="cv-job">
+                        <h4>Atención al Cliente y Coordinación de Eventos</h4>
+                        <p class="cv-company">Restaurante Tropipizza | 4 años</p>
+                        <ul>
+                            <li>Gestión directa de atención al público y ventas en el establecimiento.</li>
+                            <li>Planificación, logística y organización integral de eventos y celebraciones.</li>
+                            <li>Resolución de requerimientos de clientes garantizando una alta tasa de satisfacción.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="cv-section">
+                    <h3>Habilidades Clave</h3>
+                    <div class="cv-skills-grid">
+                        <div>
+                            <h4>Administrativas y Virtuales</h4>
+                            <ul>
+                                <li>Gestión de agendas y calendarios.</li>
+                                <li>Organización documental y archivo digital/físico.</li>
+                                <li>Atención al cliente y comunicación efectiva.</li>
+                                <li>Planificación y gestión de logística de eventos.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Herramientas Informáticas</h4>
+                            <ul>
+                                <li>Google Workspace (Drive, Docs, Sheets, Calendar).</li>
+                                <li>Microsoft Office (Word, Excel).</li>
+                                <li>Gestión de correo electrónico.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="cv-section">
+                    <h3>Educación</h3>
+                    <p><strong>Ingeniería Agronómica</strong> — Universidad Nacional Experimental de los Llanos Centrales Rómulo Gallegos (UNERG), 2018-2025</p>
+                </section>
+            </main>
+
+            <footer class="cv-footer">
+                <p>© 2026 Cristty Vásquez — Currículum Vitae</p>
+            </footer>
+        </div>
+    </div>
+
     <!-- Interactive Counter Script -->
     <script>
         // Mobile menu toggle logic
@@ -722,33 +947,123 @@
             observer.observe(metricsSection);
         }
 
-        // Función para descargar el CV completo en formato PDF
+        // Función para descargar el archivo CV.html en formato PDF
         function descargarPDF() {
-            const navbar = document.getElementById('navbar');
-            const noPdfElements = document.querySelectorAll('.no-pdf');
-            
-            // Ocultar temporalmente elementos de navegación
-            if (navbar) navbar.style.display = 'none';
-            noPdfElements.forEach(el => el.style.display = 'none');
+            const buttons = document.querySelectorAll('.btn-descargar-pdf');
+            const originalContents = [];
+            buttons.forEach((btn, i) => {
+                originalContents[i] = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i> Generando PDF...';
+                btn.disabled = true;
+            });
 
-            const elemento = document.body;
+            const restaurarBotones = () => {
+                buttons.forEach((btn, i) => {
+                    btn.innerHTML = originalContents[i] || '<i class="fa-solid fa-file-arrow-down mr-1"></i> PDF';
+                    btn.disabled = false;
+                });
+            };
+
             const opciones = {
-                margin:       [10, 10, 10, 10],
+                margin:       [0, 0, 0, 0],
                 filename:     'CV_Cristty_Vasquez.pdf',
                 image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#0f172a' },
+                html2canvas:  { scale: 2, useCORS: true, letterRendering: true, scrollY: 0, scrollX: 0, windowWidth: 800 },
                 jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
 
-            // Generar PDF y restaurar la interfaz
-            html2pdf().set(opciones).from(elemento).save().then(() => {
-                if (navbar) navbar.style.display = 'block';
-                noPdfElements.forEach(el => el.style.display = '');
-            }).catch(err => {
-                console.error("Error al generar PDF:", err);
-                if (navbar) navbar.style.display = 'block';
-                noPdfElements.forEach(el => el.style.display = '');
-            });
+            // 1. Intentar cargar CV.html en un iframe en segundo plano
+            try {
+                const iframe = document.createElement('iframe');
+                iframe.style.position = 'fixed';
+                iframe.style.left = '0';
+                iframe.style.top = '0';
+                iframe.style.width = '800px';
+                iframe.style.height = '1250px';
+                iframe.style.zIndex = '-9999';
+                iframe.style.border = 'none';
+                iframe.src = 'CV.html';
+
+                let timeoutHandle = setTimeout(() => {
+                    if (document.body.contains(iframe)) {
+                        document.body.removeChild(iframe);
+                    }
+                    generarDesdePlantilla();
+                }, 3500);
+
+                iframe.onload = function() {
+                    clearTimeout(timeoutHandle);
+                    try {
+                        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                        if (!iframeDoc || !iframeDoc.body || iframeDoc.body.children.length === 0) {
+                            throw new Error("Iframe no accesible");
+                        }
+
+                        // Ocultar elementos de navegación o botones de acción en CV.html
+                        const noPrint = iframeDoc.querySelectorAll('.no-print');
+                        noPrint.forEach(el => el.style.display = 'none');
+
+                        html2pdf().set(opciones).from(iframeDoc.body).save().then(() => {
+                            if (document.body.contains(iframe)) {
+                                document.body.removeChild(iframe);
+                            }
+                            restaurarBotones();
+                        }).catch(err => {
+                            console.error("Error en html2pdf desde iframe:", err);
+                            if (document.body.contains(iframe)) {
+                                document.body.removeChild(iframe);
+                            }
+                            generarDesdePlantilla();
+                        });
+                    } catch (err) {
+                        console.warn("Restricción de seguridad en iframe (origen local file://), utilizando plantilla interna:", err);
+                        if (document.body.contains(iframe)) {
+                            document.body.removeChild(iframe);
+                        }
+                        generarDesdePlantilla();
+                    }
+                };
+
+                iframe.onerror = function() {
+                    clearTimeout(timeoutHandle);
+                    if (document.body.contains(iframe)) {
+                        document.body.removeChild(iframe);
+                    }
+                    generarDesdePlantilla();
+                };
+
+                document.body.appendChild(iframe);
+            } catch (e) {
+                console.warn("Error creando iframe:", e);
+                generarDesdePlantilla();
+            }
+
+            // 2. Método de respaldo mediante la plantilla embebida del CV
+            function generarDesdePlantilla() {
+                const container = document.getElementById('cv-pdf-render-container');
+                if (!container) {
+                    restaurarBotones();
+                    window.open('CV.html', '_blank');
+                    return;
+                }
+
+                container.style.display = 'block';
+                container.style.position = 'fixed';
+                container.style.left = '0';
+                container.style.top = '0';
+                container.style.width = '800px';
+                container.style.zIndex = '-9999';
+
+                html2pdf().set(opciones).from(container).save().then(() => {
+                    container.style.display = 'none';
+                    restaurarBotones();
+                }).catch(err => {
+                    console.error("Error al generar PDF desde plantilla:", err);
+                    container.style.display = 'none';
+                    restaurarBotones();
+                    window.open('CV.html', '_blank');
+                });
+            }
         }
     </script>
 </body>
