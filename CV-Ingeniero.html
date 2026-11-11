@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum Vitae - Cristty Laura Vásquez Gil | Ingeniero Agrónomo</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- html2pdf.js for exporting cleanly to PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1e293b;
+            background-color: #f8fafc;
+        }
+
+        /* Estilos específicos para impresión / Generación PDF limpia ATS */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            body {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+                font-size: 11pt;
+            }
+            .cv-container {
+                box-shadow: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                max-width: 100% !important;
+            }
+            .page-break {
+                page-break-inside: avoid;
+            }
+            a {
+                text-decoration: none !important;
+                color: #000000 !important;
+            }
+        }
+    </style>
+</head>
+<body class="py-6 px-4 sm:px-6 lg:px-8 min-h-screen">
+
+   
+
+    <!-- Documento Principal del CV -->
+    <main id="cv-content" class="cv-container max-w-4xl mx-auto bg-white rounded-2xl shadow-md border border-slate-200/80 p-6 sm:p-10 md:p-12 transition-all">
+
+        <!-- Encabezado / Datos Personales -->
+        <header class="border-b border-slate-200 pb-8 mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div>
+                    <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+                        Cristty Laura Vásquez Gil
+                    </h1>
+                    <p class="text-lg font-semibold text-emerald-700 mt-1">
+                        Ingeniero Agrónomo | Analista de Innovación, Desarrollo y Control de Calidad
+                    </p>
+                </div>
+            </div>
+
+            <!-- Información de Contacto ATS-Friendly -->
+            <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-sm text-slate-600">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                    <span>Venezuela</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="mail" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                    <a href="mailto:cristtyvasquez@gmail.com" class="hover:text-emerald-700 transition-colors">cristtyvasquez@gmail.com</a>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="phone" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                    <span>+58 414-4681756</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Resumen / Perfil Profesional -->
+        <section class="mb-8 page-break">
+            <h2 class="text-xl font-bold text-slate-800 uppercase tracking-wider border-b-2 border-emerald-600 pb-1 mb-4 flex items-center gap-2">
+                <i data-lucide="user" class="w-5 h-5 text-emerald-600 no-print"></i>
+                Perfil Profesional
+            </h2>
+            <p class="text-slate-700 leading-relaxed text-justify">
+                Ingeniero Agrónomo en Producción Animal enfocada en el análisis de calidad, innovación y desarrollo de procesos agroindustriales. Experiencia sólida en verificación de procesos productivos, control de inventarios, recepción e inspección de materias primas y análisis sensorial de productos terminados en empresas del sector alimenticio y de embutidos. Alta capacidad analítica para la optimización de estándares de calidad y resolución de problemas técnicos en línea de producción.
+            </p>
+        </section>
+
+        <!-- Experiencia Laboral -->
+        <section class="mb-8 page-break">
+            <h2 class="text-xl font-bold text-slate-800 uppercase tracking-wider border-b-2 border-emerald-600 pb-1 mb-6 flex items-center gap-2">
+                <i data-lucide="briefcase" class="w-5 h-5 text-emerald-600 no-print"></i>
+                Experiencia Laboral
+            </h2>
+
+            <div class="space-y-6">
+                
+                <!-- Embutidos Millenium -->
+                <article class="border-l-2 border-emerald-500 pl-4 sm:pl-6 relative">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                        <h3 class="text-lg font-bold text-slate-900">
+                            Analista de Innovación, Desarrollo y Control de Calidad
+                        </h3>
+                        <span class="text-sm font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded border border-emerald-200 w-fit">
+                            Embutidos Millenium
+                        </span>
+                    </div>
+                    <p class="text-sm font-medium text-slate-500 mb-3">Sector Agroindustrial / Embutidos de Jamón</p>
+                    <ul class="list-disc list-inside space-y-1.5 text-slate-700 text-sm leading-relaxed">
+                        <li>Realización de análisis sensoriales y físico-químicos a producto terminado para asegurar cumplimiento de normativas sanitarias.</li>
+                        <li>Recepción, inspección y evaluación de calidad de materia prima cárnica, insumos y aditivos.</li>
+                        <li>Verificación y auditoría de la línea de proceso productivo de embutidos de jamones.</li>
+                        <li>Ejecución de pruebas mecánicas y funcionales a materiales de empaque y embalaje.</li>
+                        <li>Realización de análisis físicos minuciosos a materias primas previo al ingreso a la cadena de producción.</li>
+                    </ul>
+                </article>
+
+                <!-- Industrias Pollo Premium 5.8 C.A. -->
+                <article class="border-l-2 border-emerald-500 pl-4 sm:pl-6 relative">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                        <h3 class="text-lg font-bold text-slate-900">
+                            Pasante Universitario - Analista de Calidad e Inventario
+                        </h3>
+                        <span class="text-sm font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded border border-emerald-200 w-fit">
+                            Industrias Pollo Premium 5.8 C.A.
+                        </span>
+                    </div>
+                    <p class="text-sm font-medium text-slate-500 mb-3">Sector Alimentos y Avícola</p>
+                    <ul class="list-disc list-inside space-y-1.5 text-slate-700 text-sm leading-relaxed">
+                        <li>Control, verificación y conteo físico periódico de inventarios de materia prima y producto terminado.</li>
+                        <li>Análisis físico y organoléptico de productos terminados en la división de alimentos.</li>
+                        <li>Manejo de sistema administrativo para el registro de movimientos, entradas y salidas de stock.</li>
+                        <li>Recepción, muestreo y validación de materias primas e insumos agroindustriales.</li>
+                    </ul>
+                </article>
+
+               
+
+               
+            </div>
+        </section>
+
+        <!-- Educación -->
+        <section class="mb-8 page-break">
+            <h2 class="text-xl font-bold text-slate-800 uppercase tracking-wider border-b-2 border-emerald-600 pb-1 mb-4 flex items-center gap-2">
+                <i data-lucide="graduation-cap" class="w-5 h-5 text-emerald-600 no-print"></i>
+                Educación y Formación
+            </h2>
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <h3 class="text-lg font-bold text-slate-900">Ingeniero Agrónomo en Producción Animal</h3>
+                <p class="text-emerald-700 font-medium">Universidad Rómulo Gallegos</p>
+            </div>
+        </section>
+
+        <!-- Habilidades Técnicas y Competencias -->
+        <section class="page-break">
+            <h2 class="text-xl font-bold text-slate-800 uppercase tracking-wider border-b-2 border-emerald-600 pb-1 mb-4 flex items-center gap-2">
+                <i data-lucide="award" class="w-5 h-5 text-emerald-600 no-print"></i>
+                Habilidades y Competencias
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <h3 class="font-bold text-slate-800 mb-2 text-sm uppercase tracking-wider text-emerald-700">Técnicas y Calidad</h3>
+                    <ul class="space-y-1.5 text-sm text-slate-700">
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-emerald-600 rounded-full"></span>Control de Calidad (SGC / POE)</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-emerald-600 rounded-full"></span>Análisis Sensorial y Organoléptico</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-emerald-600 rounded-full"></span>Análisis Físico-Químico de Alimentos</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-emerald-600 rounded-full"></span>Recepción e Inspección de Materia Prima</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-emerald-600 rounded-full"></span>Pruebas Mecánicas a Materiales de Empaque</li>
+                    </ul>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <h3 class="font-bold text-slate-800 mb-2 text-sm uppercase tracking-wider text-emerald-700">Gestión y Administrativas</h3>
+                    <ul class="space-y-1.5 text-sm text-slate-700">
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-emerald-600 rounded-full"></span>Control y Conteo Físico de Inventario</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-emerald-600 rounded-full"></span>Manejo de Sistemas Administrativos</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-emerald-600 rounded-full"></span>Organización Documental y Archivo Digital</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-emerald-600 rounded-full"></span>Trabajo en Equipo y Comunicación Eficiente</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-emerald-600 rounded-full"></span>Gestión de Agendas e Inspecciones</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer informativo -->
+    <footer class="max-w-4xl mx-auto mt-8 text-center text-xs text-slate-400 no-print">
+        <p>© Cristty Laura Vásquez Gil </p>
+    </footer>
+
+    <!-- Scripts de Interactividad -->
+    <script>
+        // Inicializar iconos Lucide
+        lucide.createIcons();
+
+        // Función para descargar como PDF usando html2pdf.js
+        function downloadPDF() {
+            const element = document.getElementById('cv-content');
+            const opt = {
+                margin:       [0.4, 0.4, 0.4, 0.4],
+                filename:     'CV_Cristty_Vasquez_Ingeniero_Agronomo.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true },
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
+</body>
+</html>
