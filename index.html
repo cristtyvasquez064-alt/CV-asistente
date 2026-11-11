@@ -892,20 +892,22 @@
     </footer>
 
     <!-- ================================================================= -->
-    <!-- Modal y contenedor exacto A4 para descargar el PDF de CV.html     -->
+    <!-- Modal de notificación durante la generación del PDF               -->
     <!-- ================================================================= -->
-    <div id="cv-download-overlay" class="fixed inset-0 z-[999999] flex flex-col items-center justify-start overflow-y-auto bg-slate-950/85 backdrop-blur-sm p-4 hidden">
-        <!-- Notificación de carga mientras se genera el PDF -->
-        <div class="my-6 p-4 rounded-xl bg-slate-900 border border-slate-700 shadow-2xl flex items-center gap-4 text-white z-50">
-            <div class="w-8 h-8 rounded-full border-4 border-sky-400 border-t-transparent animate-spin"></div>
+    <div id="cv-loading-modal" data-html2canvas-ignore="true" class="fixed inset-0 z-[999999] bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-700 shadow-2xl flex items-center gap-4 text-white">
+            <div class="w-8 h-8 rounded-full border-4 border-sky-400 border-t-transparent animate-spin flex-shrink-0"></div>
             <div>
-                <p class="font-bold text-sm">Generando PDF del Currículum Vitae...</p>
-                <p class="text-xs text-slate-400">Optimizando formato A4, diseño e imagen en alta calidad.</p>
+                <p class="font-bold text-base text-white">generando pdf</p>
             </div>
         </div>
+    </div>
 
-        <!-- Documento exacto A4 (794px de ancho) -->
-        <div id="cv-sheet" class="cv-sheet shadow-2xl">
+    <!-- ================================================================= -->
+    <!-- Contenedor dedicado de captura fijado en coordenadas exactas 0,0  -->
+    <!-- ================================================================= -->
+    <div id="cv-render-wrapper" style="position: absolute; left: 0px; top: 0px; width: 794px; min-width: 794px; max-width: 794px; margin: 0; padding: 0; z-index: 999990; display: none; background-color: #f8fafc;">
+        <div id="cv-sheet" class="cv-sheet" style="margin: 0 !important; width: 794px !important; min-width: 794px !important; max-width: 794px !important; box-shadow: none !important; border-radius: 0 !important;">
             <header class="cv-header">
                 <img src="img/imgperfil.png" 
                      alt="Foto de perfil Cristty Vásquez" 
@@ -1083,51 +1085,70 @@
             const originalContents = [];
             buttons.forEach((btn, i) => {
                 originalContents[i] = btn.innerHTML;
-                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i> Generando PDF...';
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i> generando pdf';
                 btn.disabled = true;
             });
 
-            const overlay = document.getElementById('cv-download-overlay');
+            const loadingModal = document.getElementById('cv-loading-modal');
+            const renderWrapper = document.getElementById('cv-render-wrapper');
             const cvSheet = document.getElementById('cv-sheet');
 
-            // Mostrar el overlay para que el elemento esté visible y renderizado en pantalla
-            if (overlay) overlay.classList.remove('hidden');
+            // Guardar scroll y scroll-behavior originales
+            const scrollX = window.scrollX || window.pageXOffset || 0;
+            const scrollY = window.scrollY || window.pageYOffset || 0;
+            const prevScrollBehavior = document.documentElement.style.scrollBehavior;
 
-            const opciones = {
-                margin:       [0, 0, 0, 0],
-                filename:     'CV_Cristty_Vasquez.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { 
-                    scale: 2, 
-                    useCORS: true, 
-                    letterRendering: true, 
-                    backgroundColor: '#f8fafc',
-                    width: 794,
-                    windowWidth: 794,
-                    scrollY: 0,
-                    scrollX: 0
-                },
-                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            // Mostrar modal de carga y el contenedor en coordenadas exactas (0, 0)
+            if (loadingModal) loadingModal.classList.remove('hidden');
+            if (renderWrapper) renderWrapper.style.display = 'block';
+
+            // Desplazar instantáneamente a (0, 0) para captura exacta sin desplazamiento
+            document.documentElement.style.scrollBehavior = 'auto';
+            window.scrollTo(0, 0);
+
+            const cleanup = () => {
+                if (loadingModal) loadingModal.classList.add('hidden');
+                if (renderWrapper) renderWrapper.style.display = 'none';
+                window.scrollTo(scrollX, scrollY);
+                document.documentElement.style.scrollBehavior = prevScrollBehavior;
+                buttons.forEach((btn, i) => {
+                    btn.innerHTML = originalContents[i] || '<i class="fa-solid fa-file-arrow-down mr-1"></i> PDF';
+                    btn.disabled = false;
+                });
             };
 
             setTimeout(() => {
+                const sheetHeight = cvSheet ? cvSheet.offsetHeight : 1123;
+
+                const opciones = {
+                    margin:       [0, 0, 0, 0],
+                    filename:     'CV_Cristty_Vasquez.pdf',
+                    image:        { type: 'jpeg', quality: 0.98 },
+                    html2canvas:  { 
+                        scale: 2, 
+                        useCORS: true, 
+                        letterRendering: true, 
+                        backgroundColor: '#f8fafc',
+                        width: 794,
+                        height: sheetHeight,
+                        windowWidth: 1200,
+                        x: 0,
+                        y: 0,
+                        scrollX: 0,
+                        scrollY: 0
+                    },
+                    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                };
+
                 html2pdf().set(opciones).from(cvSheet).save().then(() => {
-                    if (overlay) overlay.classList.add('hidden');
-                    buttons.forEach((btn, i) => {
-                        btn.innerHTML = originalContents[i] || '<i class="fa-solid fa-file-arrow-down mr-1"></i> PDF';
-                        btn.disabled = false;
-                    });
+                    cleanup();
                 }).catch(err => {
                     console.error("Error al generar PDF:", err);
-                    if (overlay) overlay.classList.add('hidden');
-                    buttons.forEach((btn, i) => {
-                        btn.innerHTML = originalContents[i] || '<i class="fa-solid fa-file-arrow-down mr-1"></i> PDF';
-                        btn.disabled = false;
-                    });
+                    cleanup();
                     // Fallback directo a abrir CV.html
                     window.open('CV.html', '_blank');
                 });
-            }, 250);
+            }, 300);
         }
     </script>
 </body>
