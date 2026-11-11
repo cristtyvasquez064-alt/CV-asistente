@@ -320,6 +320,32 @@
             font-size: 10.5px !important;
             color: #94a3b8 !important;
         }
+
+        /* Blindaje para anular el centrado horizontal automático del contenedor interno de html2pdf */
+        .html2pdf__overlay {
+            left: 0px !important;
+            top: 0px !important;
+            right: auto !important;
+            bottom: auto !important;
+            width: 794px !important;
+            min-width: 794px !important;
+            max-width: 794px !important;
+            height: auto !important;
+            overflow: visible !important;
+            margin: 0px !important;
+            padding: 0px !important;
+        }
+
+        .html2pdf__container {
+            left: 0px !important;
+            top: 0px !important;
+            right: auto !important;
+            width: 794px !important;
+            min-width: 794px !important;
+            max-width: 794px !important;
+            margin: 0px !important;
+            padding: 0px !important;
+        }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-200 font-sans antialiased selection:bg-sky-500 selection:text-white relative">
@@ -1131,11 +1157,70 @@
                         backgroundColor: '#f8fafc',
                         width: 794,
                         height: sheetHeight,
-                        windowWidth: 1200,
+                        windowWidth: 794,
+                        windowHeight: sheetHeight + 50,
                         x: 0,
                         y: 0,
                         scrollX: 0,
-                        scrollY: 0
+                        scrollY: 0,
+                        onclone: function(clonedDoc) {
+                            clonedDoc.documentElement.style.setProperty('margin', '0px', 'important');
+                            clonedDoc.documentElement.style.setProperty('padding', '0px', 'important');
+                            clonedDoc.documentElement.style.setProperty('overflow', 'hidden', 'important');
+                            clonedDoc.body.style.setProperty('margin', '0px', 'important');
+                            clonedDoc.body.style.setProperty('padding', '0px', 'important');
+                            clonedDoc.body.style.setProperty('overflow', 'hidden', 'important');
+
+                            const overlays = clonedDoc.querySelectorAll('.html2pdf__overlay');
+                            if (overlays.length > 0) {
+                                Array.from(clonedDoc.body.children).forEach(child => {
+                                    if (!child.classList.contains('html2pdf__overlay') && !child.querySelector('.html2pdf__overlay')) {
+                                        child.style.setProperty('display', 'none', 'important');
+                                    }
+                                });
+                            } else {
+                                const sheets = clonedDoc.querySelectorAll('#cv-sheet');
+                                const lastSheet = sheets.length ? sheets[sheets.length - 1] : null;
+                                Array.from(clonedDoc.body.children).forEach(child => {
+                                    if (!lastSheet || (child !== lastSheet && !child.contains(lastSheet))) {
+                                        child.style.setProperty('display', 'none', 'important');
+                                    }
+                                });
+                            }
+
+                            clonedDoc.querySelectorAll('#cv-sheet').forEach(sheet => {
+                                let el = sheet.parentElement;
+                                while (el && el !== clonedDoc.body) {
+                                    el.style.setProperty('position', 'absolute', 'important');
+                                    el.style.setProperty('left', '0px', 'important');
+                                    el.style.setProperty('top', '0px', 'important');
+                                    el.style.setProperty('right', 'auto', 'important');
+                                    el.style.setProperty('bottom', 'auto', 'important');
+                                    el.style.setProperty('margin', '0px', 'important');
+                                    el.style.setProperty('padding', '0px', 'important');
+                                    el.style.setProperty('width', '794px', 'important');
+                                    el.style.setProperty('min-width', '794px', 'important');
+                                    el.style.setProperty('max-width', '794px', 'important');
+                                    el.style.setProperty('height', 'auto', 'important');
+                                    el.style.setProperty('overflow', 'visible', 'important');
+                                    el.style.setProperty('transform', 'none', 'important');
+                                    el.style.setProperty('opacity', '1', 'important');
+                                    if (el.classList.contains('html2pdf__overlay')) {
+                                        el.style.setProperty('background', 'transparent', 'important');
+                                    }
+                                    el = el.parentElement;
+                                }
+                                sheet.style.setProperty('margin', '0px', 'important');
+                                sheet.style.setProperty('position', 'relative', 'important');
+                                sheet.style.setProperty('left', '0px', 'important');
+                                sheet.style.setProperty('top', '0px', 'important');
+                                sheet.style.setProperty('width', '794px', 'important');
+                                sheet.style.setProperty('min-width', '794px', 'important');
+                                sheet.style.setProperty('max-width', '794px', 'important');
+                                sheet.style.setProperty('box-shadow', 'none', 'important');
+                                sheet.style.setProperty('border-radius', '0px', 'important');
+                            });
+                        }
                     },
                     jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
                 };
